@@ -13,7 +13,7 @@ public class IntImp extends ImpBaseVisitor<Value> {
         String fun_name = ctx.ID(0).getText();
 
         System.out.println("Fun name: " + fun_name);
-        System.out.println("Array" + ctx.ID().toArray().length);
+        System.out.println("Array" + ctx.ID().tloreoArray().length);
 
         return (FunValue) visit(ctx); }
 
