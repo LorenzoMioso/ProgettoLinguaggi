@@ -1,4 +1,4 @@
-// Generated from /home/samuele/IdeaProjects/imp/src/Imp.g4 by ANTLR 4.9
+// Generated from /home/lore/Repos/ProgettoLinguaggi/Base/imp/src/Imp.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -17,6 +17,13 @@ public class ImpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Im
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitProg(ImpParser.ProgContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFun(ImpParser.FunContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,4 +143,11 @@ public class ImpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Im
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitId(ImpParser.IdContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFunCall(ImpParser.FunCallContext ctx) { return visitChildren(ctx); }
 }

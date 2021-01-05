@@ -1,4 +1,4 @@
-// Generated from /home/samuele/IdeaProjects/imp/src/Imp.g4 by ANTLR 4.9
+// Generated from /home/lore/Repos/ProgettoLinguaggi/Base/imp/src/Imp.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -15,6 +15,12 @@ public interface ImpVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProg(ImpParser.ProgContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ImpParser#fun}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFun(ImpParser.FunContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code skip}
 	 * labeled alternative in {@link ImpParser#com}.
@@ -134,4 +140,11 @@ public interface ImpVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitId(ImpParser.IdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link ImpParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunCall(ImpParser.FunCallContext ctx);
 }

@@ -8,9 +8,20 @@ public class IntImp extends ImpBaseVisitor<Value> {
         this.conf = conf;
     }
 
-    private ComValue visitCom(ImpParser.ComContext ctx) {
-        return (ComValue) visit(ctx);
-    }
+    public FunValue visitFun(ImpParser.FunContext ctx) {
+
+        String fun_name = ctx.ID(0).getText();
+
+        System.out.println("Fun name: " + fun_name);
+        System.out.println("Array" + ctx.ID().toArray().length);
+
+        return (FunValue) visit(ctx); }
+
+//    public ExpValue<?> visitFunCall(ImpParser.FunCallContext ctx)  {
+//        return (ExpValue<?>) visit(ctx);
+//    }
+
+    private ComValue visitCom(ImpParser.ComContext ctx) { return (ComValue) visit(ctx); }
 
     private ExpValue<?> visitExp(ImpParser.ExpContext ctx) {
         return (ExpValue<?>) visit(ctx);
