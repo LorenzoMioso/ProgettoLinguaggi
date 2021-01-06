@@ -166,6 +166,17 @@ public class ImpParser extends Parser {
 	}
 
 	public static class FunContext extends ParserRuleContext {
+		public FunContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_fun; }
+	 
+		public FunContext() { }
+		public void copyFrom(FunContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FunDefContext extends FunContext {
 		public TerminalNode FUN() { return getToken(ImpParser.FUN, 0); }
 		public List<TerminalNode> ID() { return getTokens(ImpParser.ID); }
 		public TerminalNode ID(int i) {
@@ -183,21 +194,18 @@ public class ImpParser extends Parser {
 			return getRuleContext(ComContext.class,0);
 		}
 		public TerminalNode SEMICOLON() { return getToken(ImpParser.SEMICOLON, 0); }
-		public FunContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_fun; }
+		public FunDefContext(FunContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ImpListener ) ((ImpListener)listener).enterFun(this);
+			if ( listener instanceof ImpListener ) ((ImpListener)listener).enterFunDef(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ImpListener ) ((ImpListener)listener).exitFun(this);
+			if ( listener instanceof ImpListener ) ((ImpListener)listener).exitFunDef(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ImpVisitor ) return ((ImpVisitor<? extends T>)visitor).visitFun(this);
+			if ( visitor instanceof ImpVisitor ) return ((ImpVisitor<? extends T>)visitor).visitFunDef(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -207,6 +215,7 @@ public class ImpParser extends Parser {
 		enterRule(_localctx, 2, RULE_fun);
 		int _la;
 		try {
+			_localctx = new FunDefContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(17);

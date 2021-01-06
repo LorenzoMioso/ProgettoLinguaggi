@@ -17,15 +17,17 @@ public interface ImpListener extends ParseTreeListener {
 	 */
 	void exitProg(ImpParser.ProgContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ImpParser#fun}.
+	 * Enter a parse tree produced by the {@code funDef}
+	 * labeled alternative in {@link ImpParser#fun}.
 	 * @param ctx the parse tree
 	 */
-	void enterFun(ImpParser.FunContext ctx);
+	void enterFunDef(ImpParser.FunDefContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ImpParser#fun}.
+	 * Exit a parse tree produced by the {@code funDef}
+	 * labeled alternative in {@link ImpParser#fun}.
 	 * @param ctx the parse tree
 	 */
-	void exitFun(ImpParser.FunContext ctx);
+	void exitFunDef(ImpParser.FunDefContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code skip}
 	 * labeled alternative in {@link ImpParser#com}.
