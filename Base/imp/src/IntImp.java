@@ -8,15 +8,21 @@ public class IntImp extends ImpBaseVisitor<Value> {
         this.conf = conf;
     }
 
-    public FunValue visitFun(ImpParser.FunContext ctx) {
 
+    public Value visitFunDef(ImpParser.FunDefContext ctx) {
         System.out.println("visit fun");
-        System.out.println(ctx.fun().getText());
-        visitFun(ctx.fun());
+        System.out.println(ctx.getText());
+        visit(ctx.fun());
 
         FunValue v = new FunValue(null,null,null,null);
         return v;
     }
+
+
+    public Value visitFunNil(ImpParser.FunNilContext ctx) {
+        return null;
+    }
+
 
     public ExpValue<?> visitFunCall(ImpParser.FunCallContext ctx) {
         System.out.println("visit fun call");
@@ -72,12 +78,12 @@ public class IntImp extends ImpBaseVisitor<Value> {
     @Override
     public ComValue visitProg(ImpParser.ProgContext ctx) {
         System.out.println("visit prog");
-        System.out.println(ctx.fun().getText());
+        //System.out.println(ctx.fun().getText());
 
         //System.out.println(ctx.children.);
 
 
-        visitFun(ctx.fun());
+        visit(ctx.fun());
         return visitCom(ctx.com());
     }
 

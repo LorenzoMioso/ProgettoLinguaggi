@@ -16,11 +16,19 @@ public interface ImpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProg(ImpParser.ProgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ImpParser#fun}.
+	 * Visit a parse tree produced by the {@code funDef}
+	 * labeled alternative in {@link ImpParser#fun}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFun(ImpParser.FunContext ctx);
+	T visitFunDef(ImpParser.FunDefContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code funNil}
+	 * labeled alternative in {@link ImpParser#fun}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunNil(ImpParser.FunNilContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code skip}
 	 * labeled alternative in {@link ImpParser#com}.

@@ -27,13 +27,25 @@ public class ImpBaseListener implements ImpListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFun(ImpParser.FunContext ctx) { }
+	@Override public void enterFunDef(ImpParser.FunDefContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFun(ImpParser.FunContext ctx) { }
+	@Override public void exitFunDef(ImpParser.FunDefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunNil(ImpParser.FunNilContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunNil(ImpParser.FunNilContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
