@@ -1,8 +1,9 @@
 grammar Imp;
 
-prog : fun* com EOF ;
+prog : fun com EOF ;
 
-fun : FUN ID LPAR ID* RPAR LBRACE (com SEMICOLON)? RETURN exp RBRACE
+fun : FUN ID LPAR ID* RPAR LBRACE (com SEMICOLON)? RETURN exp RBRACE fun
+    |
     ;
 
 com : IF LPAR exp RPAR THEN LBRACE com RBRACE ELSE LBRACE com RBRACE    # if
