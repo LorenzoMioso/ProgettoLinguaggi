@@ -8,7 +8,6 @@ public class IntImp extends ImpBaseVisitor<Value> {
         this.conf = conf;
     }
 
-
     public Value visitFunDef(ImpParser.FunDefContext ctx) {
         System.out.println("visit fun");
         System.out.println(ctx.getText());
@@ -31,7 +30,7 @@ public class IntImp extends ImpBaseVisitor<Value> {
     }
 
     private ComValue visitCom(ImpParser.ComContext ctx) {
-        System.out.println("visit com");
+        //System.out.println("Visit com: " + ctx.getText());
         return (ComValue) visit(ctx);
     }
 
