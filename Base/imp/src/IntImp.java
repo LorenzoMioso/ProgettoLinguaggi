@@ -1,20 +1,61 @@
 import value.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class IntImp extends ImpBaseVisitor<Value> {
 
     private final Conf conf;
+    private final FunMap funMap;
 
     public IntImp(Conf conf) {
         this.conf = conf;
+        this.funMap = new FunMap();
     }
 
     public Value visitFunDef(ImpParser.FunDefContext ctx) {
         System.out.println("visit fun");
-        System.out.println(ctx.getText());
+
+        String funName = ctx.ID(0).getText();
+
+        // check if function is already defined
+        if (funMap.contains(funName)) {
+            System.err.println("Function " + funName + " already defined");
+            System.err.println("@" + ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine());
+
+            System.exit(1);
+        }
+
+        // saving parameters
+        ArrayList<String> parameters = new ArrayList<String>();
+
+        // skip first parameter, which is function name
+        for (int i = 1; i < ctx.ID().size(); i++) {
+
+            String par = ctx.ID(i).getText();
+
+            // check if parameter name is already used
+            if (parameters.contains(par)) {
+                System.err.println("Parameter " + par + " already utilized");
+                System.err.println("@" + ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine());
+
+                System.exit(1);
+            } else {
+                parameters.add(par);
+            }
+
+        }
+
+        // create funValue
+        FunValue fun = new FunValue(funName, parameters, ctx.com(), ctx.exp());
+
+        // store function
+        funMap.update(funName,fun);
+
+        // visit next function
         visit(ctx.fun());
 
-        FunValue v = new FunValue(null,null,null,null);
-        return v;
+        return null;
     }
 
 
@@ -24,6 +65,51 @@ public class IntImp extends ImpBaseVisitor<Value> {
 
 
     public ExpValue<?> visitFunCall(ImpParser.FunCallContext ctx) {
+
+        String funName = ctx.ID().getText();
+
+        // check if function is not defined
+        if (funMap.contains(funName)) {
+            System.err.println("Function " + funName + " is not defined");
+            System.err.println("@" + ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine());
+
+            System.exit(1);
+        }
+
+        FunValue fun = funMap.get(funName);
+        int parNum = ctx.exp().size();
+
+        // check the number of parameters
+        if (fun.parameters.size() != parNum){
+            System.err.println("Function " + funName + " needs" + parNum + "parameters");
+            System.err.println("@" + ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine());
+
+            System.exit(1);
+        }
+
+
+        // saving parameters
+        ArrayList<String> parameters = new ArrayList<String>();
+
+        // skip first parameter, which is function name
+        for (int i = 1; i < ctx.ID().size(); i++) {
+
+            String par = ctx.ID(i).getText();
+
+            // check if parameter name is already used
+            if (parameters.contains(par)) {
+                System.err.println("Parameter " + par + " already utilized");
+                System.err.println("@" + ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine());
+
+                System.exit(1);
+            } else {
+                parameters.add(par);
+            }
+
+        }
+
+
+
         System.out.println("visit fun call");
         ExpValue<?> v = null;
         return v;
@@ -80,7 +166,6 @@ public class IntImp extends ImpBaseVisitor<Value> {
         //System.out.println(ctx.fun().getText());
 
         //System.out.println(ctx.children.);
-
 
         visit(ctx.fun());
         return visitCom(ctx.com());
