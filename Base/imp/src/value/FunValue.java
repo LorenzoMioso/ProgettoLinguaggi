@@ -1,15 +1,17 @@
 package value;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import java.util.ArrayList;
 
 public class FunValue extends Value {
 
-    public final String name;
-    public final ArrayList<String> parameters;
-    public final Object comContext;
-    public final Object expContex;
+    private final String name;
+    private final ArrayList<String> parameters;
+    private final ParseTree comContext;
+    private final ParseTree expContex;
 
-    public FunValue(String name, ArrayList<String> parameters, Object comContext, Object expContex) {
+    public FunValue(String name, ArrayList<String> parameters, ParseTree comContext, ParseTree expContex) {
         this.name = name;
         this.parameters = parameters;
         this.comContext = comContext;
@@ -24,11 +26,11 @@ public class FunValue extends Value {
         return parameters;
     }
 
-    public Object getComContext() {
+    public ParseTree getComContext() {
         return comContext;
     }
 
-    public Object getExpContex() {
+    public ParseTree getExpContex() {
         return expContex;
     }
 

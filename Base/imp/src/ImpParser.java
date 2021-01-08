@@ -949,38 +949,38 @@ public class ImpParser extends Parser {
 				break;
 			case 5:
 				{
-				_localctx = new IdContext(_localctx);
+				_localctx = new FunCallContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(86);
 				match(ID);
-				}
-				break;
-			case 6:
-				{
-				_localctx = new FunCallContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
 				setState(87);
-				match(ID);
-				setState(88);
 				match(LPAR);
-				setState(92);
+				setState(91);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NAT) | (1L << BOOL) | (1L << NOT) | (1L << LPAR) | (1L << ID))) != 0)) {
 					{
 					{
-					setState(89);
+					setState(88);
 					exp(0);
 					}
 					}
-					setState(94);
+					setState(93);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(95);
+				setState(94);
 				match(RPAR);
+				}
+				break;
+			case 6:
+				{
+				_localctx = new IdContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(95);
+				match(ID);
 				}
 				break;
 			}
@@ -1174,7 +1174,7 @@ public class ImpParser extends Parser {
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
 		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4F\n\4\3\4\3"+
 		"\4\3\4\7\4K\n\4\f\4\16\4N\13\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
-		"\3\5\3\5\3\5\7\5]\n\5\f\5\16\5`\13\5\3\5\5\5c\n\5\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\7\5\\\n\5\f\5\16\5_\13\5\3\5\3\5\5\5c\n\5\3\5\3\5\3\5\3\5\3\5"+
 		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5w\n\5\f\5\16\5"+
 		"z\13\5\3\5\2\4\6\b\6\2\4\6\b\2\7\3\2\7\t\3\2\5\6\3\2\17\22\3\2\r\16\3"+
 		"\2\13\f\2\u008b\2\n\3\2\2\2\4$\3\2\2\2\6E\3\2\2\2\bb\3\2\2\2\n\13\5\4"+
@@ -1192,14 +1192,14 @@ public class ImpParser extends Parser {
 		"\2\2E\67\3\2\2\2E8\3\2\2\2E@\3\2\2\2FL\3\2\2\2GH\f\5\2\2HI\7!\2\2IK\5"+
 		"\6\4\6JG\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2M\7\3\2\2\2NL\3\2\2\2OP"+
 		"\b\5\1\2Pc\7\3\2\2Qc\7\4\2\2RS\7\35\2\2ST\5\b\5\2TU\7\36\2\2Uc\3\2\2\2"+
-		"VW\7\23\2\2Wc\5\b\5\nXc\7#\2\2YZ\7#\2\2Z^\7\35\2\2[]\5\b\5\2\\[\3\2\2"+
-		"\2]`\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_a\3\2\2\2`^\3\2\2\2ac\7\36\2\2bO\3\2"+
-		"\2\2bQ\3\2\2\2bR\3\2\2\2bV\3\2\2\2bX\3\2\2\2bY\3\2\2\2cx\3\2\2\2de\f\13"+
+		"VW\7\23\2\2Wc\5\b\5\nXY\7#\2\2Y]\7\35\2\2Z\\\5\b\5\2[Z\3\2\2\2\\_\3\2"+
+		"\2\2][\3\2\2\2]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`c\7\36\2\2ac\7#\2\2bO\3\2"+
+		"\2\2bQ\3\2\2\2bR\3\2\2\2bV\3\2\2\2bX\3\2\2\2ba\3\2\2\2cx\3\2\2\2de\f\13"+
 		"\2\2ef\7\n\2\2fw\5\b\5\13gh\f\t\2\2hi\t\2\2\2iw\5\b\5\njk\f\b\2\2kl\t"+
 		"\3\2\2lw\5\b\5\tmn\f\7\2\2no\t\4\2\2ow\5\b\5\bpq\f\6\2\2qr\t\5\2\2rw\5"+
 		"\b\5\7st\f\5\2\2tu\t\6\2\2uw\5\b\5\6vd\3\2\2\2vg\3\2\2\2vj\3\2\2\2vm\3"+
 		"\2\2\2vp\3\2\2\2vs\3\2\2\2wz\3\2\2\2xv\3\2\2\2xy\3\2\2\2y\t\3\2\2\2zx"+
-		"\3\2\2\2\13\24\34$EL^bvx";
+		"\3\2\2\2\13\24\34$EL]bvx";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -24,8 +24,8 @@ exp : NAT                                 # nat
     | exp op=(LT | LEQ | GEQ | GT) exp    # cmpExp
     | exp op=(EQQ | NEQ) exp              # eqExp
     | exp op=(AND | OR) exp               # logicExp
-    | ID                                  # id
     | ID LPAR exp* RPAR                   # funCall
+    | ID                                  # id
     ;
 
 NAT : '0' | [1-9][0-9]* ;
