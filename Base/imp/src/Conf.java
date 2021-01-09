@@ -18,4 +18,6 @@ public class Conf {
     public void update(String id, ExpValue<?> v) {
         map.put(id, v);
     }
+
+    public void clear(){ map.clear();}
 }

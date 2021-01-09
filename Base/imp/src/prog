@@ -6,3 +6,4 @@ fun factorial(n) {
 }
 
 out(factorial(5))
+

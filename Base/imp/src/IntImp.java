@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class IntImp extends ImpBaseVisitor<Value> {
 
-    private final Conf conf;
+    private Conf conf;
     private final FunMap funMap;
 
     public IntImp(Conf conf) {
@@ -14,6 +14,17 @@ public class IntImp extends ImpBaseVisitor<Value> {
         this.funMap = new FunMap();
     }
 
+    @Override
+    public ComValue visitProg(ImpParser.ProgContext ctx) {
+
+        // visit all functions
+        for (ParseTree fun: ctx.fun()) {
+            visit(fun);
+        }
+
+        // then visit com
+        return visitCom(ctx.com());
+    }
     public Value visitFunDef(ImpParser.FunDefContext ctx) {
 
         String funName = ctx.ID(0).getText();
@@ -52,9 +63,6 @@ public class IntImp extends ImpBaseVisitor<Value> {
         // store function
         funMap.update(funName, fun);
 
-        // visit next function
-        visit(ctx.fun());
-
         return null;
     }
 
@@ -92,6 +100,12 @@ public class IntImp extends ImpBaseVisitor<Value> {
             System.out.println("Val: " + arg.toJavaValue().toString());
         }
 
+        // setting up temp memory for body evaluation
+        Conf temp = new Conf();
+        temp = conf;
+        conf.clear();
+
+
         // connecting parameter with arguments
         ArrayList<String> parameters = fun.getParameters();
         for (int i = 0; i < parameters.size(); i++) {
@@ -106,11 +120,10 @@ public class IntImp extends ImpBaseVisitor<Value> {
         // evaluate return expression
         ExpValue<?> retVal = (ExpValue<?>) visit(fun.getExpContex());
 
-        return retVal;
-    }
+        // restore memory
+        conf = temp;
 
-    public Value visitFunNil(ImpParser.FunNilContext ctx) {
-        return null;
+        return retVal;
     }
 
     private ComValue visitCom(ImpParser.ComContext ctx) {
@@ -153,11 +166,6 @@ public class IntImp extends ImpBaseVisitor<Value> {
         return false; // unreachable code
     }
 
-    @Override
-    public ComValue visitProg(ImpParser.ProgContext ctx) {
-        visit(ctx.fun());
-        return visitCom(ctx.com());
-    }
 
     @Override
     public ComValue visitIf(ImpParser.IfContext ctx) {

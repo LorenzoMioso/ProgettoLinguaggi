@@ -29,18 +29,6 @@ public interface ImpListener extends ParseTreeListener {
 	 */
 	void exitFunDef(ImpParser.FunDefContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code funNil}
-	 * labeled alternative in {@link ImpParser#fun}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunNil(ImpParser.FunNilContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code funNil}
-	 * labeled alternative in {@link ImpParser#fun}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunNil(ImpParser.FunNilContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code skip}
 	 * labeled alternative in {@link ImpParser#com}.
 	 * @param ctx the parse tree

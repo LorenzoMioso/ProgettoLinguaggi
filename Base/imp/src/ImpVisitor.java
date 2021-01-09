@@ -23,13 +23,6 @@ public interface ImpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunDef(ImpParser.FunDefContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code funNil}
-	 * labeled alternative in {@link ImpParser#fun}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunNil(ImpParser.FunNilContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code skip}
 	 * labeled alternative in {@link ImpParser#com}.
 	 * @param ctx the parse tree
