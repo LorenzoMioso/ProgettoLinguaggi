@@ -2,12 +2,11 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import value.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class IntImp extends ImpBaseVisitor<Value> {
 
-    private Conf conf;
     private final FunMap funMap;
+    private Conf conf;
 
     public IntImp(Conf conf) {
         this.conf = conf;
@@ -18,13 +17,14 @@ public class IntImp extends ImpBaseVisitor<Value> {
     public ComValue visitProg(ImpParser.ProgContext ctx) {
 
         // visit all functions
-        for (ParseTree fun: ctx.fun()) {
+        for (ParseTree fun : ctx.fun()) {
             visit(fun);
         }
 
         // then visit com
         return visitCom(ctx.com());
     }
+
     public Value visitFunDef(ImpParser.FunDefContext ctx) {
 
         String funName = ctx.ID(0).getText();
@@ -69,7 +69,7 @@ public class IntImp extends ImpBaseVisitor<Value> {
     public ExpValue<?> visitFunCall(ImpParser.FunCallContext ctx) {
 
         String funName = ctx.ID().getText();
-        System.out.println("Fun call");
+        //System.out.println("Fun call");
 
         // check if function is not defined
         if (!funMap.contains(funName)) {
@@ -97,13 +97,16 @@ public class IntImp extends ImpBaseVisitor<Value> {
         for (int i = 0; i < ctx.exp().size(); i++) {
             ExpValue arg = (ExpValue) visit(ctx.exp(i));
             args.add(arg);
-            System.out.println("Val: " + arg.toJavaValue().toString());
+            //System.out.println("Val: " + arg.toJavaValue().toString());
         }
+
+
 
         // setting up temp memory for body evaluation
         Conf temp = new Conf();
-        temp = conf;
+        temp.getMap().putAll(conf.getMap());
         conf.clear();
+        //System.out.println("temp conf : " +  temp.toString());
 
 
         // connecting parameter with arguments
@@ -120,6 +123,8 @@ public class IntImp extends ImpBaseVisitor<Value> {
         // evaluate return expression
         ExpValue<?> retVal = (ExpValue<?>) visit(fun.getExpContex());
 
+        //System.out.println("conf : " +  conf.toString());
+        //System.out.println("temp : " +  temp.toString());
         // restore memory
         conf = temp;
 
@@ -166,7 +171,6 @@ public class IntImp extends ImpBaseVisitor<Value> {
         return false; // unreachable code
     }
 
-
     @Override
     public ComValue visitIf(ImpParser.IfContext ctx) {
         return visitBoolExp(ctx.exp())
@@ -180,6 +184,8 @@ public class IntImp extends ImpBaseVisitor<Value> {
         ExpValue<?> v = visitExp(ctx.exp());
 
         conf.update(id, v);
+        //System.out.println("Assign conf : " +  conf.toString());
+
 
         return ComValue.INSTANCE;
     }
