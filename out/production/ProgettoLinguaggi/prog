@@ -1,3 +1,0 @@
-fun f(x) { return 1 }
-
-out(f)
